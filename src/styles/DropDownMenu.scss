@@ -1,0 +1,104 @@
+$MenuBgColor: #222;
+$linksBgColor: transparent;
+$linksTextColor: #fff;
+$linksHoverBgColor: rgba(#555, 0.2);
+$linksHoverTextColor: #fff;
+$subMenuBgColor: #ddd;
+$subMenuLinksTextColor: #222;
+$dropDownOpenSpeed: 0.1s;
+$linksPadding: 1rem;
+$linksFontWeight: 600;
+$subLinksFontWeight: 500;
+$subLinkPadding: 0.8rem;
+$activeDropDownBgColor: tomato;
+$activeDropDownTextColor: #fff;
+$subLinkHoverBgColor: rgba(20, 20, 20, 0.1);
+$subLinkHoverColor: #222;
+$menuLinkMouseDownBgColor: #eee;
+$menuLinkMouseDownTextColor: #222;
+
+.drop-down-menu {
+  width: 100%;
+  background-color: $MenuBgColor;
+  font-family: sans-serif;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  box-shadow: 0 0 15px 2px rgba(#000, 0.5);
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  a:any-link {
+    text-decoration: none;
+    color: inherit;
+  }
+  .menu-link:active {
+    background-color: $menuLinkMouseDownBgColor;
+    color: $menuLinkMouseDownTextColor;
+  }
+  a[class*='-link'] {
+    padding: $linksPadding;
+    font-weight: $linksFontWeight;
+    background-color: $linksBgColor;
+    color: $linksTextColor;
+    display: block;
+    text-align: center;
+    transition:
+      background-color $dropDownOpenSpeed ease,
+      color $dropDownOpenSpeed ease;
+    &:hover {
+      background-color: $linksHoverBgColor;
+      color: $linksHoverTextColor;
+    }
+  }
+  .drop-down-content {
+    position: relative;
+    .drop-down-link {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      gap: 5px;
+      .drop-down-text {
+        padding-left: 0.5rem;
+      }
+      .drop-down-icon {
+        font-size: 18px;
+        transition: transform $dropDownOpenSpeed ease;
+      }
+      &.active {
+        background-color: $activeDropDownBgColor;
+        color: $activeDropDownTextColor;
+      }
+    }
+
+    .sub-menu {
+      background-color: $subMenuBgColor;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      box-shadow:
+        1px 1px 3px 1px rgba(#222, 0.5),
+        0px 0px 10px rgba(#222, 0.3);
+      z-index: -1;
+      transition:
+        max-height $dropDownOpenSpeed ease,
+        opacity $dropDownOpenSpeed ease;
+      overflow: hidden;
+      display: flex;
+      flex-flow: column nowrap;
+      width: 100%;
+      .sub-link {
+        padding: $subLinkPadding;
+        color: $subMenuLinksTextColor;
+        font-weight: $subLinksFontWeight;
+
+        &:hover {
+          background-color: $subLinkHoverBgColor;
+          color: $subLinkHoverColor;
+        }
+      }
+    }
+  }
+}
